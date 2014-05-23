@@ -20,22 +20,26 @@ public class ChromosomeGenerator {
         this.reinas = reinas;
         GeneGenerator();
     }
-    
-    public ArrayList obtenerCromosoma(){
+
+    public ArrayList obtenerCromosoma() {
         return cromosoma;
     }
 
     private void GeneGenerator() {
 
         int contador = 0;
-        while(contador < reinas) {
+        while (contador < reinas) {
             int posicionX = posicionGenerator();
             int posicionY = posicionGenerator();
 
             Gen gen = new Gen(posicionX, posicionY);
 
+<<<<<<< HEAD
+            if (!contiene(cromosoma, gen)) {
+=======
             //yo creo que este contains no funciona =D, tocaría comparar elemento por elemento (posiciones) del gen
             if (!cromosoma.contains(gen)) {
+>>>>>>> origin
                 cromosoma.add(gen);
                 contador++;
             }
@@ -49,6 +53,24 @@ public class ChromosomeGenerator {
         int posicion = (int) (Math.random() * reinas);
 
         return posicion;
+    }
+
+    private boolean contiene(ArrayList<Gen> cromosomaEntrada, Gen gen) {
+
+        boolean contenido = false;
+
+        for (int i = 0; i < cromosomaEntrada.size(); i++) {
+
+            if (cromosomaEntrada.get(i).getX() == gen.getX() && cromosomaEntrada.get(i).getY() == gen.getY()) {
+
+                return true;
+
+            }
+
+        }
+
+        return contenido;
+
     }
 
 }
