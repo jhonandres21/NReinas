@@ -34,6 +34,7 @@ public class ChromosomeGenerator {
 
             Gen gen = new Gen(posicionX, posicionY);
 
+            //yo creo que este contains no funciona =D, tocaría comparar elemento por elemento (posiciones) del gen
             if (!cromosoma.contains(gen)) {
                 cromosoma.add(gen);
                 contador++;
