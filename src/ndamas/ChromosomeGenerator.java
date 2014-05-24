@@ -55,6 +55,19 @@ public class ChromosomeGenerator {
         return posicion;
     }
 
+    public void revisarAtaques(){
+     
+        //revisando columnas iguales -> se atacan 
+        for (int x = 0; x < reinas; x++) {
+            for (int y = x+1; y < reinas; y++) {
+
+               if(cromosoma.get(x).getX() == cromosoma.get(y).getX()){
+                   System.out.println("Se atacan");
+               }       
+            }
+        }//fin del for
+    }
+
     private boolean contiene(ArrayList<Gen> cromosomaEntrada, Gen gen) {
 
         boolean contenido = false;
