@@ -74,8 +74,10 @@ public class ChromosomeGenerator {
             }
         }
         //imprimirArreglo(valores);
-        System.out.println("Número de ataques Columnas: " + contadorOcurrenciasX(valoresX));
-        System.out.println("Número de ataques Filas: " + contadorOcurrenciasY(valoresY));
+        //Para el método contadorOcurrencias el parametro 0 significa que va a revisar la componente x
+        //el parametro 1 significa que va a revisar la componente y
+        System.out.println("Número de ataques Columnas: " + contadorOcurrencias(valoresX, 0));
+        System.out.println("Número de ataques Filas: " + contadorOcurrencias(valoresY, 1));
     }
 
     //para revisar si son iguales en la componente X o Y
@@ -105,37 +107,22 @@ public class ChromosomeGenerator {
         return contenido;
     }
 
-    private int contadorOcurrenciasX(ArrayList arreglo) {
+    private int contadorOcurrencias(ArrayList arreglo, int valor) {
 
         int contadorInterno = 0;
         int contadorGeneral = 0;
+        int componente = 0;
 
         for (int i = 0; i < arreglo.size(); i++) {
             for (int j = 0; j < reinas; j++) {
 
-                if (arreglo.get(i) == cromosoma.get(j).getX()) {
-                    contadorInterno += 1;
+                if (valor == 0) {
+                    componente = cromosoma.get(j).getX();
+                } else if (valor == 1) {
+                    componente = cromosoma.get(j).getY();
                 }
-            }
 
-            if (contadorInterno > 1) {
-                contadorGeneral += contadorInterno;
-            }
-            contadorInterno = 0;
-        }
-
-        return contadorGeneral;
-    }
-
-    private int contadorOcurrenciasY(ArrayList arreglo) {
-
-        int contadorInterno = 0;
-        int contadorGeneral = 0;
-
-        for (int i = 0; i < arreglo.size(); i++) {
-            for (int j = 0; j < reinas; j++) {
-
-                if (arreglo.get(i) == cromosoma.get(j).getY()) {
+                if (arreglo.get(i) == componente) {
                     contadorInterno += 1;
                 }
             }
