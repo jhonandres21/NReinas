@@ -34,7 +34,7 @@ public class ChromosomeGenerator {
 
             Gen gen = new Gen(posicionX, posicionY);
 
-            if (!contiene(cromosoma, gen)) {
+            if (!contenido(cromosoma, gen)) {
 
                 //yo creo que este contains no funciona =D, tocaría comparar elemento por elemento (posiciones) del gen
                 if (!cromosoma.contains(gen)) {
@@ -55,35 +55,77 @@ public class ChromosomeGenerator {
         return posicion;
     }
 
-    public void revisarAtaques(){
-     
-        //revisando columnas iguales -> se atacan 
-        for (int x = 0; x < reinas; x++) {
-            for (int y = x+1; y < reinas; y++) {
+    public void revisarAtaques() {
 
-               if(cromosoma.get(x).getX() == cromosoma.get(y).getX()){
-                   System.out.println("Se atacan");
-               }       
+        int contador = 0;
+        ArrayList valores = new ArrayList();
+
+        //revisando columnas iguales -> se atacan         
+        for (int x = 0; x < reinas; x++) {
+
+            if (!contieneComponenteX(valores, cromosoma.get(x).getX())) {
+
+                valores.add(cromosoma.get(x).getX());
             }
-        }//fin del for
+        }
+        //imprimirArreglo(valores);
+        System.out.println("Número de ataques: " + contadorOcurrencias(valores));
     }
 
-    private boolean contiene(ArrayList<Gen> cromosomaEntrada, Gen gen) {
+    //para revisar si son iguales en la componente X
+    private boolean contieneComponenteX(ArrayList arreglo, int componente) {
+
+        boolean contenido = false;
+
+        for (int i = 0; i < arreglo.size(); i++) {
+
+            if (arreglo.get(i) == componente) {
+                return true;
+            }
+        }
+        return contenido;
+    }
+
+    private boolean contenido(ArrayList<Gen> cromosomaEntrada, Gen gen) {
 
         boolean contenido = false;
 
         for (int i = 0; i < cromosomaEntrada.size(); i++) {
 
             if (cromosomaEntrada.get(i).getX() == gen.getX() && cromosomaEntrada.get(i).getY() == gen.getY()) {
-
                 return true;
-
             }
-
         }
-
         return contenido;
-
     }
 
+    private int contadorOcurrencias(ArrayList arreglo) {
+
+        int contadorInterno = 0;
+        int contadorGeneral = 0;
+
+        for (int i = 0; i < arreglo.size(); i++) {
+            for (int j = 0; j < reinas; j++) {
+
+                if (arreglo.get(i) == cromosoma.get(j).getX()) {
+                    contadorInterno += 1;
+                }
+            }
+
+            if (contadorInterno > 1) {
+                contadorGeneral += contadorInterno;
+            }
+            contadorInterno = 0;
+        }
+
+        return contadorGeneral;
+    }
+
+    private void imprimirArreglo(ArrayList arreglo) {
+
+        for (int i = 0; i < arreglo.size(); i++) {
+            System.out.print(arreglo.get(i) + " ");
+        }
+        System.out.println();
+    }
 }
