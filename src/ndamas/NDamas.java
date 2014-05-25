@@ -19,21 +19,25 @@ public class NDamas {
      */
     public static void main(String[] args) {
         //TODO lo que está comentado lo hizo pipe, por ahora lo comento
-        //int poblacion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la poblacion inicial:"));
+        //Ahora lo descomento para acomodar las comparaciones de los cromosomas
+        int poblacion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la poblacion inicial:"));
         int reinas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de reinas:"));
 
-        //GeneradorPoblacion gp = new GeneradorPoblacion(poblacion, reinas);
-        //ArrayList <ArrayList<Gen>> cromosomas = gp.obtenerPoblacion();
-        ChromosomeGenerator cg = new ChromosomeGenerator(reinas);
-        cg.revisarAtaques();
-        ArrayList<Gen> cromosomas = (cg.obtenerCromosoma());
+        GeneradorPoblacion gp = new GeneradorPoblacion(poblacion, reinas);
+        ArrayList <ArrayList<Gen>> cromosomas = gp.obtenerPoblacion();
+        
+        
+        //Comento lo que hizo Jhon para hacer mis pruebas
+//        ChromosomeGenerator cg = new ChromosomeGenerator(reinas);
+//        cg.revisarAtaques();
+//        ArrayList<Gen> cromosomas = (cg.obtenerCromosoma());
 
         for (int j = 0; j < cromosomas.size(); j++) {
-            //for (int i = 0; i < reinas; i++) {
+            for (int i = 0; i < reinas; i++) {
 
-            //System.out.println("El cromosoma:" + j + " Posición X: " + cromosomas.get(j).get(i).getX() + "Posición Y: " + cromosomas.get(j).get(i).getY());
-            System.out.println("Posición X: " + cromosomas.get(j).getX() + " Posición Y: " + cromosomas.get(j).getY());
-            //}
+            System.out.println("El cromosoma:" + j + " Posición X: " + cromosomas.get(j).get(i).getX() + "Posición Y: " + cromosomas.get(j).get(i).getY());
+            //System.out.println("Posición X: " + cromosomas.get(j).getX() + " Posición Y: " + cromosomas.get(j).getY());
+            }
         }
 
     }

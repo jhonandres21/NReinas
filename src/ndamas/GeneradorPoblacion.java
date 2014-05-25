@@ -45,7 +45,8 @@ public class GeneradorPoblacion {
     }
 
     private boolean existeCromosoma(ChromosomeGenerator cromosoma) {
-        
+
+        int noRepeticiones = 0;
         ArrayList<Gen> cromosomaNuevoAuxiliar = cromosoma.obtenerCromosoma();;
         ArrayList<Gen> cromosomaAntiguoAuxiliar;
         for (int i = 0; i < this.poblacion.size(); i++) {
@@ -54,9 +55,10 @@ public class GeneradorPoblacion {
 
             for (int j = 0; j < cromosomaNuevoAuxiliar.size(); j++) {
 
-                if (contiene(cromosomaAntiguoAuxiliar, cromosomaNuevoAuxiliar.get(j))) {
+                if (!contiene(cromosomaAntiguoAuxiliar, cromosomaNuevoAuxiliar.get(j))) {
 
-                    return true;
+                    noRepeticiones++;
+                    break;
 
                 }
 
@@ -64,13 +66,14 @@ public class GeneradorPoblacion {
 
         }
 
-        return false;
-
+        if (noRepeticiones == (poblacion.size())) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     private boolean contiene(ArrayList<Gen> cromosomaEntrada, Gen gen) {
-
-        boolean contenido = false;
 
         for (int i = 0; i < cromosomaEntrada.size(); i++) {
 
@@ -82,7 +85,7 @@ public class GeneradorPoblacion {
 
         }
 
-        return contenido;
+        return false;
 
     }
 
