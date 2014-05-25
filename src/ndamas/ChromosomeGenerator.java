@@ -87,7 +87,9 @@ public class ChromosomeGenerator {
 
         for (int i = 0; i < arreglo.size(); i++) {
 
-            if (arreglo.get(i) == componente) {
+            int valorArreglo = (int) arreglo.get(i);
+
+            if (valorArreglo == componente) {
                 return true;
             }
         }
@@ -122,7 +124,10 @@ public class ChromosomeGenerator {
                     componente = cromosoma.get(j).getY();
                 }
 
-                if (arreglo.get(i) == componente) {
+
+                int valorArreglo = (int) arreglo.get(i);
+
+                if (valorArreglo == componente) {
                     contadorInterno += 1;
                 }
             }
