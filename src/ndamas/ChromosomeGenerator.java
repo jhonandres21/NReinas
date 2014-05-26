@@ -42,58 +42,29 @@ public class ChromosomeGenerator {
                     cromosoma.add(gen);
                     contador++;
                 }
-
             }
-
         }
     }
 
     private int posicionGenerator() {
 
         int posicion = (int) (Math.random() * reinas);
-
         return posicion;
     }
 
     public void revisarAtaques() {
 
-        ArrayList valoresX = new ArrayList();
-        ArrayList valoresY = new ArrayList();
+        int ataquesColumnas = 0;
 
-
-        for (int x = 0; x < reinas; x++) {
+        for (int i = 0; i < reinas; i++) {
             //revisando Columnas iguales -> se atacan 
-            if (!contieneComponente(valoresX, cromosoma.get(x).getX())) {
-
-                valoresX.add(cromosoma.get(x).getX());
-            }
-            //revisando Filas iguales -> se atacan 
-            if (!contieneComponente(valoresY, cromosoma.get(x).getY())) {
-
-                valoresY.add(cromosoma.get(x).getY());
+            if (contadorOcurrenciasX(cromosoma.get(i).getX(), i)) {
+                ataquesColumnas++;
             }
         }
-        //imprimirArreglo(valores);
-        //Para el método contadorOcurrencias el parametro 0 significa que va a revisar la componente x
-        //el parametro 1 significa que va a revisar la componente y
-        System.out.println("Número de ataques Columnas: " + contadorOcurrencias(valoresX, 0));
-        System.out.println("Número de ataques Filas: " + contadorOcurrencias(valoresY, 1));
-    }
 
-    //para revisar si son iguales en la componente X o Y
-    private boolean contieneComponente(ArrayList arreglo, int componente) {
+        System.out.println("Ataques columnas: " + ataquesColumnas);
 
-        boolean contenido = false;
-
-        for (int i = 0; i < arreglo.size(); i++) {
-
-            int valorArreglo = (int) arreglo.get(i);
-
-            if (valorArreglo == componente) {
-                return true;
-            }
-        }
-        return contenido;
     }
 
     private boolean contenido(ArrayList<Gen> cromosomaEntrada, Gen gen) {
@@ -109,36 +80,17 @@ public class ChromosomeGenerator {
         return contenido;
     }
 
-    private int contadorOcurrencias(ArrayList arreglo, int valor) {
+    private boolean contadorOcurrenciasX(int valor, int indice) {
 
-        int contadorInterno = 0;
-        int contadorGeneral = 0;
-        int componente = 0;
+        for (int i = 0; i < reinas; i++) {
 
-        for (int i = 0; i < arreglo.size(); i++) {
-            for (int j = 0; j < reinas; j++) {
+            int valorArreglo = cromosoma.get(i).getX();
 
-                if (valor == 0) {
-                    componente = cromosoma.get(j).getX();
-                } else if (valor == 1) {
-                    componente = cromosoma.get(j).getY();
-                }
-
-
-                int valorArreglo = (int) arreglo.get(i);
-
-                if (valorArreglo == componente) {
-                    contadorInterno += 1;
-                }
+            if (valorArreglo == valor && i != indice) {
+                return true;
             }
-
-            if (contadorInterno > 1) {
-                contadorGeneral += contadorInterno;
-            }
-            contadorInterno = 0;
         }
-
-        return contadorGeneral;
+        return false;
     }
 //    private void imprimirArreglo(ArrayList arreglo) {
 //

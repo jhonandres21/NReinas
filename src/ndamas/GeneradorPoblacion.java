@@ -59,11 +59,8 @@ public class GeneradorPoblacion {
 
                     noRepeticiones++;
                     break;
-
                 }
-
             }
-
         }
 
         if (noRepeticiones == (poblacion.size())) {
@@ -83,6 +80,7 @@ public class GeneradorPoblacion {
             }
         }
         return false;
+
     }
 
 }
