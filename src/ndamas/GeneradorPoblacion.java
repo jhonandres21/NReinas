@@ -80,13 +80,9 @@ public class GeneradorPoblacion {
             if (cromosomaEntrada.get(i).getX() == gen.getX() && cromosomaEntrada.get(i).getY() == gen.getY()) {
 
                 return true;
-
             }
-
         }
-
         return false;
-
     }
 
 }
