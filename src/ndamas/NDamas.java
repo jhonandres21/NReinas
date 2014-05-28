@@ -25,7 +25,6 @@ public class NDamas {
 
         //GeneradorPoblacion gp = new GeneradorPoblacion(poblacion, reinas);
         //ArrayList <ArrayList<Gen>> cromosomas = gp.obtenerPoblacion();
-
         //Comento lo que hizo Jhon para hacer mis pruebas
         ChromosomeGenerator cg = new ChromosomeGenerator(reinas);
         cg.revisarAtaques();
@@ -34,9 +33,21 @@ public class NDamas {
         for (int j = 0; j < cromosomas.size(); j++) {
             //for (int i = 0; i < reinas; i++) {
 
-                //System.out.println("El cromosoma:" + j + " Posición X: " + cromosomas.get(j).get(i).getX() + "Posición Y: " + cromosomas.get(j).get(i).getY());
-                System.out.println("Posición X: " + cromosomas.get(j).getX() + " Posición Y: " + cromosomas.get(j).getY());
+            //System.out.println("El cromosoma:" + j + " Posición X: " + cromosomas.get(j).get(i).getX() + "Posición Y: " + cromosomas.get(j).get(i).getY());
+            System.out.println("Posición X: " + cromosomas.get(j).getX() + " Posición Y: " + cromosomas.get(j).getY());
             //}
+        }
+
+        for (int i = 0; i < cromosomas.size(); i++) {
+            for (int j = 0; j < cromosomas.size(); j++) {
+
+                if (i != cromosomas.get(i).getX() && j != cromosomas.get(j).getY()) {
+                    System.out.print(" 0 ");
+                } else {
+                    System.out.print(" * ");
+                }
+            }
+            System.out.println();
         }
 
     }

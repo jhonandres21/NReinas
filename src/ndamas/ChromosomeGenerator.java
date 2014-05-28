@@ -54,17 +54,15 @@ public class ChromosomeGenerator {
 
     public void revisarAtaques() {
 
-        int ataquesColumnas = 0;
+        int ataques = 0;
 
         for (int i = 0; i < reinas; i++) {
-            //revisando Columnas iguales -> se atacan 
-            if (contadorOcurrenciasX(cromosoma.get(i).getX(), i)) {
-                ataquesColumnas++;
+            //revisando Filas iguales -> se atacan 
+            if (contadorOcurrencias(cromosoma.get(i).getX(), cromosoma.get(i).getY(), i)) {
+                ataques++;
             }
         }
-
-        System.out.println("Ataques columnas: " + ataquesColumnas);
-
+        System.out.println("Ataques Filas: " + ataques);
     }
 
     private boolean contenido(ArrayList<Gen> cromosomaEntrada, Gen gen) {
@@ -80,18 +78,25 @@ public class ChromosomeGenerator {
         return contenido;
     }
 
-    private boolean contadorOcurrenciasX(int valor, int indice) {
+    private boolean contadorOcurrencias(int valorX, int valorY, int indice) {
 
         for (int i = 0; i < reinas; i++) {
 
             int valorArreglo = cromosoma.get(i).getX();
 
-            if (valorArreglo == valor && i != indice) {
+            if (valorArreglo == valorX && i != indice) {
+                return true;
+            }
+
+            valorArreglo = cromosoma.get(i).getY();
+
+            if (valorArreglo == valorY && i != indice) {
                 return true;
             }
         }
         return false;
     }
+
 //    private void imprimirArreglo(ArrayList arreglo) {
 //
 //        for (int i = 0; i < arreglo.size(); i++) {
